@@ -12,7 +12,8 @@ export default async function signup(req: NextApiRequest, res: NextApiResponse) 
       const result = await statement.run(req.body.name, req.body.email, hash);
       result.finalize();
 
-      const person = await db.get('select * from person');
+      const person = await db.all('select * from person');
+      console.log('user added')
       res.json(person)
 
     });
